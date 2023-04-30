@@ -1,5 +1,7 @@
 #VSCode
 .vscode
+**/archive.zip
+**/extract
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
