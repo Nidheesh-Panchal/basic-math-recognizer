@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+		<title>Basic Math Solver</title>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Basic Math Solver</h1>
+			<p>Please upload an image to get text version of your basic math</p>
+			<br>
+			<br>
+
+			<form action="{{ url_for('req_predict') }}" method="post" enctype="multipart/form-data">
+				
+				<label for="upload">
+					Upload Or Drop Photo
+				</label>
+				<input type="file" accept="image/*" id="upload" onchange="upload_event(event)">
+				
+				<br>
+				<!-- <br> -->
+				<!-- <label for="image">Uploaded image</label> -->
+				<!-- <br> -->
+				<div id="image-display">
+					<img id="image" width="500" ondrop="drop_event(event)" />
+				</div>
+				
+				<br>
+				<br>
+				<br>
+				<!-- <input type = "submit" value="Convert to text">  -->
+				<button type="submit">Convert to text</button>
+			</form>
+
+			<br>
+			<br>
+			<textarea rows="2" cols="30" placeholder="Your text will appear here">{{ pred }}</textarea>
+		</div>
+		
+		
+
+		<script>
+			upload_element = document.getElementById("upload")
+
+			upload_event = function(event) {
+				file = event.target.files[0]
+				console.log(event.target.files[0])
+				var src = URL.createObjectURL(file)
+				console.log("Image : ", src)
+				document.getElementById("image").src = src
+			}
+
+			drop_event = function(event) {
+				console.log(event)
+			}
+		</script>
+	</body>
+</html>

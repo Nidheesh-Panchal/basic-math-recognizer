@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 import os
 import tensorflow as tf
 import cv2
@@ -183,7 +182,7 @@ def process_image(img):
     # print(img.shape)
     temp = cv2.resize(img, (img_row, img_col))
     temp = temp / 255
-    temp = np.reshape(temp, (img_row, img_col, 1))
+    temp = np.reshape(temp, (img_row, img_col, channel))
     # return temp
     return np.array([temp])
 
