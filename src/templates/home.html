@@ -35,10 +35,12 @@
 	</div>
 	<script>
 		upload_element = document.getElementById("upload")
+		image_element = document.getElementById("image")
 
 		upload_event = function(event) {
 			file = event.target.files[0]
 			var src = URL.createObjectURL(file)
+			image_element.src = src
 		}
 	</script>
 </body>  

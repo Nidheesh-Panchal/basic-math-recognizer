@@ -14,6 +14,8 @@ template_dir = os.path.join(src_dir, "templates")
 # predict.predict(os.path.join(test_dir, "eq7.png"))
 
 UPLOAD_FOLDER = os.path.join(template_dir, "uploads")
+if("uploads" not in os.listdir(template_dir)):
+	os.mkdir(os.path.join(template_dir, "uploads"))
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
