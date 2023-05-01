@@ -171,12 +171,12 @@ def get_image_all(file):
 
 	for c in final_contour:
 		x,y,xa,yb=c
-		cv2.rectangle(img, (x, y), (xa, yb), (0, 255, 0), 2)
+		cv2.rectangle(img, (x, y), (xa, yb), (255, 255, 255), 2)
 		images.append(thresh[y : yb, x : xa])
 	images = np.array(images)
 	# plt.imshow(img)
 
-	return images
+	return images, img
 
 def process_image(img):
 	# print(img.shape)
@@ -187,7 +187,10 @@ def process_image(img):
 	return np.array([temp])
 
 def predict(img):
-	eq_img = get_image_all(img)
+	eq_img, cnt_img = get_image_all(img)
+	new_path = img.split(".")[-2]+"_1." + img.split(".")[-1]
+	print("new path: ", new_path)
+	cv2.imwrite(new_path, ~cnt_img)
 	eq_str = ""
 	for imgs in eq_img:
 		im = process_image(imgs)

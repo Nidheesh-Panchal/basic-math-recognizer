@@ -9,8 +9,6 @@
     box-sizing: border-box;
 }
 
-/* html { overflow-y: scroll; } */
-
 body {
     color: var(--main-color);
     font-size: 1.3em;
@@ -18,19 +16,11 @@ body {
     display: grid;
     justify-content: center;
     background-color: #292929;
-    /* overflow-y: scroll;
-    width: 100%;
-    height: 100%; */
 }
 
 h2 {
     margin: 0;
     padding-bottom: 0.3em;
-}
-
-hr {
-    border: 1px solid var(--main-color);
-    border-bottom: none;
 }
 
 label {
@@ -40,30 +30,11 @@ label {
     color: var(--bg-color);
     font-size: 1.1em;
     text-align: center;
-    width: 16em;
-    padding: 1em 0;
+    width: fit-content;
+    padding: 1em 2em;
     border-radius: 0.3em;
     margin: 0 auto 1em auto;
     cursor: pointer;
-}
-
-label span {
-    min-width: 9ch;
-    display: inline-block;
-}
-
-input {
-    border: 1px solid var(--main-color);
-    color: inherit;
-    padding: 0.3em;
-}
-
-.hidden {
-    display: none;
-}
-
-.editing {
-    background-color: var(--secondary-color) !important;
 }
 
 input[type="file"] {
@@ -115,6 +86,11 @@ button:hover {
     text-align: center;
 }
 
+img {
+    width: 500;
+    height: auto;
+}
+
 #image-display {
 position: relative;
 width: 500;
@@ -129,7 +105,7 @@ width: 500;
 }
 #image-display img {
 width: 500;
-border-radius: 5px;
+border-radius: 0.3em;
 border-style: solid;
 }
 #image-display figcaption {
@@ -137,6 +113,7 @@ font-size: 0.8em;
 text-align: center;
 color: #5a5861;
 }
+
 textarea {
     color: var(--bg-color);
     background-color:#5a5861;
