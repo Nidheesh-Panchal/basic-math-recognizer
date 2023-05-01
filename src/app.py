@@ -1,9 +1,7 @@
 import os
 import logging
 from model import predict
-from flask import Flask, app, jsonify, render_template, request, url_for, redirect, flash, send_from_directory
-from distutils.log import debug
-from fileinput import filename
+from flask import Flask, app, render_template, request, url_for, send_from_directory
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(name)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', level=logging.INFO)
 logger = logging.getLogger('main')
