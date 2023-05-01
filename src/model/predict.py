@@ -3,6 +3,9 @@ import os
 import tensorflow as tf
 import cv2
 import matplotlib.pyplot as plt
+import logging
+
+logger = logging.getLogger('predict')
 
 base_dir = os.getcwd()
 src_dir = os.path.join(base_dir, "src")
@@ -148,27 +151,39 @@ def adjust_contours(img, new_contour, dims_thresh, inc_thresh):
 
 def get_image_all(file):
 	img = cv2.imread(file, cv2.IMREAD_GRAYSCALE)
+	logger.info(f"Size of the original image {len(img[0])} x {len(img)}")
+	logger.info("Use grayscale image and flip the colors so that the image becomes white text and black background")
 	img = ~img
+
+	logger.info("Use threshold binary to get sharp edges")
 	_, thresh = cv2.threshold(img,127,255,cv2.THRESH_BINARY)
+
+	logger.info("Get contours")
 	contours, hierarchy = cv2.findContours(thresh,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
+
+	logger.info("Sort contours based on x-axis location")
 	contour = sorted(contours, key = lambda ctr: cv2.boundingRect(ctr)[0])
 	
+	logger.info("merge all the x-axis overlapping contours")
 	new_contour = merge_all_contours(img, contour)
 	
-	# print("final contours :", new_contour)
+	logger.info(f"Merged contours : {new_contour}")
 	
 	dims_thresh = 20
 	# remove small contours
 	# make contours slightly square
 	# increasing the width or length threshold
 	inc_thresh = 0.6
+
+	logger.info(f"Use threshold for per dimension: {dims_thresh} and width, height ratio threshold: {inc_thresh}")
 	
 	final_contour = adjust_contours(img, new_contour, dims_thresh, inc_thresh)
 
-	# print("new new contour after filtering threshold:", final_contour)
+	logger.info(f"Final contours : {final_contour}")
 
 	images = []
 
+	logger.info("Get individual contour images for recognition and add contour rectangles on original image")
 	for c in final_contour:
 		x,y,xa,yb=c
 		cv2.rectangle(img, (x, y), (xa, yb), (255, 255, 255), 2)
@@ -179,7 +194,7 @@ def get_image_all(file):
 	return images, img
 
 def process_image(img):
-	# print(img.shape)
+	logger.info(f"Shape of the image : {img.shape}")
 	temp = cv2.resize(img, (img_row, img_col))
 	temp = temp / 255
 	temp = np.reshape(temp, (img_row, img_col, channel))
@@ -189,7 +204,7 @@ def process_image(img):
 def predict(img):
 	eq_img, cnt_img = get_image_all(img)
 	new_path = img.split(".")[-2]+"_1." + img.split(".")[-1]
-	print("new path: ", new_path)
+	logger.info(f"Saving individual character boxes image at new path: {new_path}")
 	cv2.imwrite(new_path, ~cnt_img)
 	eq_str = ""
 	for imgs in eq_img:
@@ -213,6 +228,6 @@ def predict(img):
 			lab = "*"
 
 		eq_str += lab
-	print("Equation: ", eq_str)
+	logger.info(f"Recognized Equation: {eq_str}")
 
 	return eq_str
