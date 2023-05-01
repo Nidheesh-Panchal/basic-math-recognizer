@@ -1,0 +1,122 @@
+
+:root {
+    --bg-color: white;
+    --main-color: rgb(224, 108, 0);
+    --secondary-color: lavenderblush;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    color: var(--main-color);
+    font-size: 1.3em;
+    font-family: sans-serif;
+    display: grid;
+    justify-content: center;
+    background-color: #292929;
+}
+
+h2 {
+    margin: 0;
+    padding-bottom: 0.3em;
+}
+
+label {
+    display: block;
+    position: relative;
+    background-color: var(--main-color);
+    color: var(--bg-color);
+    font-size: 1.1em;
+    text-align: center;
+    width: fit-content;
+    padding: 1em 2em;
+    border-radius: 0.3em;
+    margin: 0 auto 1em auto;
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+button,
+.button {
+    background-color: var(--main-color);
+    border: 1px solid var(--main-color);
+    color: var(--bg-color);
+    cursor: pointer;
+    font-size: 0.6em;
+    font-weight: bold;
+    margin: 0.3em 0;
+    padding: 0.3em 1.3em;
+    text-transform: uppercase;
+    min-width: 23ch;
+}
+
+button:hover {
+    background-color: var(--bg-color);
+    color: var(--main-color);
+}
+
+.button {
+    background-color: transparent;
+    color: var(--main-color);
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--main-color);
+    color: var(--bg-color);
+}
+
+.container {
+    background-color: #303030;
+    width: 60%;
+    min-width: 27.5em;
+    padding: 3.12em 1.87em;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    box-shadow: 0 1.25em 3.43em rgba(0, 0, 0, 0.08);
+    border-radius: 0.5em;
+    overflow-y: scroll;
+    text-align: center;
+}
+
+img {
+    width: 500;
+    height: auto;
+}
+
+#image-display {
+position: relative;
+width: 500;
+margin: 0 auto;
+display: flex;
+justify-content: space-evenly;
+gap: 1.25em;
+flex-wrap: wrap;
+}
+#image-display figure {
+width: 500;
+}
+#image-display img {
+width: 500;
+border-radius: 0.3em;
+border-style: solid;
+}
+#image-display figcaption {
+font-size: 0.8em;
+text-align: center;
+color: #5a5861;
+}
+
+textarea {
+    color: var(--bg-color);
+    background-color:#5a5861;
+    border: 1px solid var(--main-color);
+    outline: none;
+}

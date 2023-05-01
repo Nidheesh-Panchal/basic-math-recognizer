@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">  
+<head>  
+    
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">  
+	<title>Basic Math Recognizer</title>
+</head>  
+<body>
+	<div class="container" ondrop="drop_event(event)">
+		<h1>Basic Math Recognizer</h1>
+		<p>Please upload an image to get text version of your basic math</p>
+		<br>
+		
+		<form action = "{{ url_for('req_predict') }}" method = "post" enctype="multipart/form-data">  
+			<label for="upload">Upload Photo</label>
+			<input type="file" name="file" id="upload" onchange="upload_event(event)" />
+
+			<div id="image-display">
+				{% if path %}
+				<img id="image" width="500" src="{{path}}"/>
+				{% else %}
+				<img id="image" width="500" height="300" />
+				{% endif %}
+			</div>
+
+			<br>
+
+			<button type="submit">Convert to text</button>
+		</form>
+
+		<br>
+
+		<textarea rows="2" cols="30" placeholder="Your text will appear here">{{ pred }}</textarea>
+	</div>
+	<script>
+		upload_element = document.getElementById("upload")
+		image_element = document.getElementById("image")
+
+		upload_event = function(event) {
+			file = event.target.files[0]
+			var src = URL.createObjectURL(file)
+			image_element.src = src
+		}
+	</script>
+</body>  
+</html>
