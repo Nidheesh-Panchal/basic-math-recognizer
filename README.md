@@ -25,10 +25,10 @@ Open the following URL in the browser of your choice
 http://localhost:{port}/
 ```
 
-## Demo
-![Alt text](./Resources/demo.gif)
+## Screenshot
+![Image](./Resources/demo1.png)
 
-![Alt text](./Resources/demo2.gif)
+![Image](./Resources/demo2.png)
 
 ## Train new model
 
